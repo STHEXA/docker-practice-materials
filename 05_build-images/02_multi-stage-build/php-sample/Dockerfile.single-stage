@@ -1,0 +1,45 @@
+# PHPのベースイメージ
+FROM php:8.3-fpm-alpine
+
+# Node.jsとnpmのインストール
+RUN apk add --no-cache \
+    nodejs \
+    npm
+
+# Composerのインストール
+RUN apk add --no-cache curl && \
+    curl -sS https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/local/bin/composer
+
+# 必要なパッケージのインストール
+RUN apk --no-cache add \
+    freetype \
+    libjpeg-turbo \
+    libpng \
+    libzip \
+    zip \
+    unzip \
+    && apk add --no-cache --virtual .build-deps \
+    freetype-dev \
+    libjpeg-turbo-dev \
+    libpng-dev \
+    libzip-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd zip \
+    && apk del .build-deps
+
+# 作業ディレクトリを設定
+WORKDIR /var/www/html
+
+# Node.jsの依存関係をインストール
+COPY package*.json ./
+RUN npm ci
+
+# ソースコードをコピーしてビルド(npm installで作成されたファイルを使いたいため)
+COPY . .
+RUN npm run build
+
+# Composerの依存関係をインストール
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --optimize-autoloader
+

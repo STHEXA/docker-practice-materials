@@ -1,0 +1,7 @@
+# Dockerイメージに含めないファイルやディレクトリ
+.dockerignore
+Dockerfile
+.git
+.gitignore
+.tool-versions
+README.md

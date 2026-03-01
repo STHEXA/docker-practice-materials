@@ -1,0 +1,21 @@
+# npm や composer の成果物を除外
+node_modules
+dist
+vendor
+
+# Docker関連ファイルを除外
+Dockerfile
+.dockerignore
+
+# Windows特有の隠しファイルを除外
+Thumbs.db
+Desktop.ini
+
+# Mac特有の隠しファイルを除外
+.DS_Store
+
+# その他
+*.swp
+*.swo
+README.md
+

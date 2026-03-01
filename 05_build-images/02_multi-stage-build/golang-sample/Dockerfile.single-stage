@@ -1,0 +1,36 @@
+FROM golang:1.23-alpine
+WORKDIR /app
+
+# Node.jsとnpmのインストール
+RUN apk add --no-cache \
+    nodejs \
+    npm
+
+# モジュール関係のファイルのみをコピー
+COPY go.mod go.sum ./
+
+# モジュールの依存を先にダウンロードしてキャッシュを効かせる
+RUN go mod download
+
+# Node.jsの依存関係をインストール
+COPY package*.json ./
+RUN npm ci
+
+# ソースコードを含めてファイルをコピー
+COPY . .
+
+# ソースコードをコピーしてビルド(npm installで作成されたファイルを使いたいため)
+RUN npm run build
+
+# ソースコードをコピーしてビルド
+RUN go build -o main .
+
+# 必要に応じて環境変数を設定する
+ENV PORT=8080
+
+# デフォルトの公開ポート
+EXPOSE 8080
+
+# アプリケーションを実行
+CMD ["./main"]
+

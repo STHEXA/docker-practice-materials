@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "tailwindcss": "^3.4.13"
+  },
+  "scripts": {
+    "build": "tailwindcss build -i ./src/resources/main.css -o ./public/dist/main.css --minify"
+  }
+}
