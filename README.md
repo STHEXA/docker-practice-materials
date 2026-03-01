@@ -1,10 +1,30 @@
-# ArgoCD で デプロイ環境を整えよう
-この資料は、 「GitHub Actions & ArgoCD で CI/CD 入門」の「ArgoCD で デプロイ環境を整えよう」で利用するサンプルファイルです。
+## 概要
 
-## 構成
-- [ArgoCD の構成を manifest で定義して管理する](./03_declarative-apps)
-- [App of Apps パターン](./04_app-of-apps)
-- [AWS EKS で ArgoCD を動かしてみよう](./05_eks)
+本リポジトリは、Udemy講座  
+**【初心者歓迎】速習！Docker「docker 実はわからん」はこれで終わりだ！（DevOps入門）**  
+のサンプルアプリケーションとして作成したものです。
 
-## 利用規約 / 免責事項
-[ご利用ガイド](https://docs.devopsstarterpack.com/docs/intro/guide/) をご確認ください。
+Dockerの基本概念から実践的なコンテナ運用までをハンズオン形式で学習する過程で構築した内容をまとめています。
+
+---
+
+## 学習内容
+
+このリポジトリでは、主に以下の内容を扱っています。
+
+- Dockerの基本概念（イメージ / コンテナ / ボリューム / ネットワーク）
+- Dockerfileによるイメージ作成
+- docker-compose（Compose）を用いたマルチコンテナ構成
+- 開発環境のコンテナ化
+- コンテナ間通信の仕組み
+
+---
+
+## 目的
+
+- Dockerの理解を深める
+- ローカル開発環境のコンテナ化を体験する
+- DevOpsの基礎概念に触れる
+- 実務で使えるDockerの基礎力を身につける
+
+---
