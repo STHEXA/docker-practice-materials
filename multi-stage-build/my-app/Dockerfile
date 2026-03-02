@@ -1,8 +1,10 @@
-# Webサーバーのnginxをベースイメージにする
-FROM nginx:1.27-alpine
+###############################
+# ビルドステージ(node)
+###############################
+FROM node:latest AS build-stage
 
-# node と pnpm のインストール
-RUN apk add --no-cache nodejs pnpm
+# pnpm をインストール
+RUN npm install -g pnpm
 
 # 作業ディレクトリ
 WORKDIR /app
@@ -15,5 +17,10 @@ RUN pnpm i --frozen-lockfile
 COPY . .
 RUN pnpm run build
 
-# 成果物を nginx のドキュメントルートに移動
-RUN mv ./dist/* /usr/share/nginx/html
+###############################
+# 実行環境(nginx)
+###############################
+FROM nginx:1.27-alpine
+
+# build-stage でできた成果物を nginx のドキュメントルートに移動
+COPY --from=build-stage /app/dist /usr/share/nginx/html
