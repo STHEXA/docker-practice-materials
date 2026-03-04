@@ -1,0 +1,8 @@
+services:
+  webserver:
+    image: nginx:1.25.3-alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src/public:/var/www/html/public
+      - ./docker/nginx/conf/conf.d:/etc/nginx/conf.d
