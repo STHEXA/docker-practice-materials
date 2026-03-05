@@ -7,7 +7,9 @@
 </head>
 <body class="bg-gray-50 flex items-center justify-center min-h-screen">
   <div class="bg-white p-10 rounded-lg shadow-lg">
-    <h1 class="text-4xl font-bold underline text-gray-900">Hello! Docker</h1>
+    <h1 class="text-4xl font-bold underline text-gray-900"><?php echo $message; ?></h1>
+    <p class="mt-4 text-gray-600">PHP version: <?php echo $php_version; ?></p>
+    <p class="mt-4 text-gray-600">MySQL version: <?php echo $db_version; ?></p>
   </div>
 </body>
 </html>

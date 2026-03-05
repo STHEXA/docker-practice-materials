@@ -6,3 +6,7 @@ services:
     volumes:
       - ./src/public:/var/www/html/public
       - ./docker/nginx/conf/conf.d:/etc/nginx/conf.d
+  app:
+    image: php:8.3-fpm-alpine3.19
+    volumes:
+      - ./src:/var/www/html
